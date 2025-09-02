@@ -1,5 +1,5 @@
 /*
- * Name        : lab_2.cpp
+ * Name        : Arturo M - lab_2.cpp
  * Author      : FILL IN
  * Description : Using Arithmetic to finish the functions MakeChange() and
  *               LaunchHumanCannonball()
@@ -32,6 +32,7 @@ double LaunchHumanCannonball(double initial_velocity, double launch_angle);
 
 // Create a Constant named kPI which is initialized to 3.1415927
 // FILL IN
+const double kPI = 3.1415927;
 
 // Program Execution Starts Here
 int main() {
@@ -57,6 +58,20 @@ int main() {
 void MakeChange(int initial_value, int &quarters, int &dimes, int &nickels,
                 int &pennies) {
   // CODE HERE
+  int remainder_Quart;
+  int remainder_dim;
+  int remainder_nick;
+
+  quarters =  initial_value / 25;
+  remainder_Quart = initial_value % 25;
+ 
+  dimes = remainder_Quart / 10;
+  remainder_dim = remainder_Quart % 10;
+
+  nickels = remainder_dim / 5;
+  remainder_nick = remainder_dim % 5;
+
+  pennies = remainder_nick / 1;
 }
 
 /*
@@ -74,23 +89,35 @@ double LaunchHumanCannonball(double initial_velocity, double launch_angle) {
   // (1) Convert launch_angle from degrees to radians
   //     [radian_angle = degree_launch_angle * (kPI/180)]
   // CODE HERE
+  double radian_angle;
+  double x_velocity;
+  double y_velocity;
+  double flight_time;
+  double x_distance;
+
+  radian_angle = launch_angle * (kPI/180);
 
   // (2) Compute final horizontal/x velocity
   //     [x_velocity = initial_velocity * cos(radian_angle)]
   // CODE HERE
+  x_velocity = initial_velocity * cos(radian_angle);
 
   // (3) Compute final vertical/y velocity
   //     [y_velocity = initial_velocity * sin(radian_angle) * -1]
   // CODE HERE
+  y_velocity = initial_velocity * sin(radian_angle) * -1;
 
   // (4) Compute time of flight
   //     [flight_time = (y_velocity) * 2 / -9.8]
   // CODE HERE
+  flight_time = (y_velocity) * 2 / -9.8;
 
   // (5) Compute horizontal/x distance travelled
   //     [x_distance = x_velocity * flight_time]
   // CODE HERE
+  x_distance = x_velocity * flight_time;
 
+  return x_distance;
 }
 
 // For testing (DO NOT ALTER)
